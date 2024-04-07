@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VibeShift - Login</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for login.html */
+    .container {
+        max-width: 30rem;
+    }
+
+    .input-field {
+        background-color: rgba(255, 0, 0, 0.1); /* Red background with some transparency */
+        border-color: #8b0000; /* Dark red border color */
+    }
+
+    .input-field:focus {
+        border-color: #ff3333; /* Light red border color on focus */
+    }
+
+    .login-btn {
+        background-color: #ff3333; /* Red login button */
+    }
+
+    .login-btn:hover {
+        background-color: #cc0000; /* Darker red on hover */
+    }
+  </style>
+</head>
+<body class="bg-gray-800 text-white h-screen min-h-screen flex flex-col items-center justify-center">
+  <div class="container mx-auto px-4 py-16 flex flex-col items-center justify-center">
+    <h1 class="text-3xl font-bold mb-4">Login</h1>
+    <form action="{% url 'login' %}" method="post" class="flex flex-col space-y-4 w-full">
+      {% csrf_token %}
+      <div class="flex items-center mb-2">
+        <input id="username" name="username" type="text" class="rounded-md input-field px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 w-full" placeholder="Username">
+      </div>
+      <div class="flex items-center mb-2">
+        <input id="password" name="password" type="password" class="rounded-md input-field px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 w-full" placeholder="Password">
+      </div>
+      <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 rounded-full px-4 login-btn">Login</button>
+    </form>
+    {% if error_message %}
+      <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>
